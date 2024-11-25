@@ -1,0 +1,2 @@
+# Odin Battleship
+As the name implies, it is a simple JavaScript implementation of the Battleship game, with a TDD mindset, as per The Odin Project's specifications. [Project's link](https://www.theodinproject.com/lessons/javascript-battleship)
