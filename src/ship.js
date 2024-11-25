@@ -10,7 +10,7 @@
   }
 
   isSunk() {
-    this.sunk = ((self.length - self.hits) == 0)
+    this.sunk = ((this.length - this.hits) == 0)
   }
  }
 
