@@ -12,9 +12,10 @@ class GameBoard {
       for (const set of shipCoordinates) {
         this.board[set[0]][set[1]] = ship;
       }
+      return true;
     }
     else {
-      return;
+      return false;
     }
   }
 
