@@ -9,7 +9,7 @@ class GameBoard {
   placeShip(shipCoordinates) {
     const ship = new Ship(shipCoordinates.length)
     if (this.isLegal(shipCoordinates)) {
-      for (const set of coordinates) {
+      for (const set of shipCoordinates) {
         this.board[set[0]][set[1]] = ship;
       }
     }
