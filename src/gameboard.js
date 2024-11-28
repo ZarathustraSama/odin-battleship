@@ -6,13 +6,15 @@ class GameBoard {
     this.attacks = [];
   }
 
-  placeShip(coordinates) {
-    const ship = new Ship(coordinates.length)
-    for (const set of coordinates) {
-      if (this.isShip(coordinates) || this.outOfBounds(coordinates)) {
-        return;
+  placeShip(shipCoordinates) {
+    const ship = new Ship(shipCoordinates.length)
+    if (this.isLegal(shipCoordinates)) {
+      for (const set of coordinates) {
+        this.board[set[0]][set[1]] = ship;
       }
-      this.board[set[0]][set[1]] = ship;
+    }
+    else {
+      return;
     }
   }
 
@@ -40,6 +42,15 @@ class GameBoard {
     }
 
     return true;
+  }
+
+  isLegal(shipCoordinates) {
+    for (const coordinates of shipCoordinates) {
+      if (this.isShip(coordinates) || this.outOfBounds(coordinates)) {
+        return false;
+      }
+      return true;
+    }
   }
 
   isShip(coordinates) {
