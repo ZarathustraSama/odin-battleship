@@ -1,3 +1,7 @@
+const boardLength = 10;
+const shipsLenght = [5, 5, 4, 3, 2, 2];
+const directions = ["Horizontal", "Vertical"]
+
 function initializeBoard(player) {
   for (const shipLength of shipsLenght) {
     const initialCoordinates = [getRandomInt(boardLength), getRandomInt(boardLength)];
@@ -7,7 +11,6 @@ function initializeBoard(player) {
     if (!player.board.placeShip(coordinates)) {
       initializeBoard(player)
     }
-
   }
 }
 
