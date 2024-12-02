@@ -1,8 +1,8 @@
 import Ship from "./ship";
 
 class GameBoard {
-  constructor(_board) {
-    this.board = _board || [...Array(10)].map(() => Array(10).fill(null));
+  constructor() {
+    this.board = [...Array(10)].map(() => Array(10).fill(null));
     this.attacks = [];
   }
 
