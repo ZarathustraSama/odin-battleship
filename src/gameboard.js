@@ -47,7 +47,7 @@ class GameBoard {
 
   isLegal(shipCoordinates) {
     for (const coordinates of shipCoordinates) {
-      if (this.isShip(coordinates) || this.outOfBounds(coordinates)) {
+      if (this.outOfBounds(coordinates) || this.isShip(coordinates)) {
         return false;
       }
       return true;
