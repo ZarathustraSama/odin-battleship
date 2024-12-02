@@ -1,9 +1,9 @@
 import GameBoard from "../src/gameboard";
 
 class Player {
-  constructor(_gameboard, type) {
-    this.game = _gameboard || new GameBoard();
+  constructor(type) {
     this.type = type;
+    this.board = new GameBoard();
   }
 }
 
