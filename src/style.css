@@ -5,16 +5,21 @@ html, body {
   padding: 0;
 }
 
-body {
+.flex-container {
   display: flex;
   justify-content: space-around;
 }
 
-h1 {
+h1, h2 {
   text-align: center;
 }
 
-.cell {
+button {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.cell, svg {
   border: 1px solid black;
 }
 
@@ -45,6 +50,10 @@ h1 {
 
 .ship-2 {
   background-color: purple;
+}
+
+.missed {
+  background-color: palevioletred;
 }
 
 .sunk-self {
