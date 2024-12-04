@@ -4,7 +4,7 @@ const directions = ["Horizontal", "Vertical"];
 
 function initializeBoard(player, sL = null) {
   if (sL == null) {
-    sL = shipsLenght;
+    sL = structuredClone(shipsLenght);
   }
 
   while (sL.length > 0) {
