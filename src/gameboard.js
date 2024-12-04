@@ -50,8 +50,8 @@ class GameBoard {
       if (this.outOfBounds(coordinates) || this.isShip(coordinates)) {
         return false;
       }
-      return true;
     }
+    return true;
   }
 
   isShip(coordinates) {
@@ -59,7 +59,8 @@ class GameBoard {
   }
 
   outOfBounds(coordinates) {
-    return coordinates[0] < 0 || coordinates[0] > this.board.length || coordinates[1] < 0 || coordinates[1] > this.board.length;
+    // Since I'm using Math.random() it will never go below 0
+    return (coordinates[0] >= this.board.length) || (coordinates[1] >= this.board.length);
   }
 }
 
