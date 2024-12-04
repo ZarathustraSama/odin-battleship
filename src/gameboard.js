@@ -21,7 +21,7 @@ class GameBoard {
 
   receiveAttack(coordinates) {
     if (this.attacks.includes(coordinates)) {
-      return false;
+      return null;
     }
     else if (this.isShip(coordinates)) {
       this.board[coordinates[0]][coordinates[1]].hit();
