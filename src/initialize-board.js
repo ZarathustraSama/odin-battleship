@@ -1,15 +1,22 @@
 const boardLength = 10;
 const shipsLenght = [5, 5, 4, 3, 2, 2];
-const directions = ["Horizontal", "Vertical"]
+const directions = ["Horizontal", "Vertical"];
 
-function initializeBoard(player) {
-  for (const shipLength of shipsLenght) {
+function initializeBoard(player, sL = null) {
+  if (sL == null) {
+    sL = shipsLenght;
+  }
+
+  while (sL.length > 0) {
     const initialCoordinates = [getRandomInt(boardLength), getRandomInt(boardLength)];
     const direction = directions[getRandomInt(directions.length)];
-    const coordinates = shipCoordinates(initialCoordinates, direction, shipLength);
+    const coordinates = shipCoordinates(initialCoordinates, direction, sL[0]);
 
-    if (!player.board.placeShip(coordinates)) {
-      initializeBoard(player)
+    if (player.board.placeShip(coordinates)) {
+      sL.shift();
+    }
+    else {
+      initializeBoard(player, sL);
     }
   }
 }
