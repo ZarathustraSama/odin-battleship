@@ -20,16 +20,16 @@ class GameBoard {
   }
 
   receiveAttack(coordinates) {
-    if (this.attacks.includes(coordinates)) {
+    if (this.outOfBounds(coordinates) || this.attacks.includes(`${coordinates[0]}${coordinates[1]}`)) {
       return null;
     }
     else if (this.isShip(coordinates)) {
       this.board[coordinates[0]][coordinates[1]].hit();
-      this.attacks.push(coordinates);
+      this.attacks.push(`${coordinates[0]}${coordinates[1]}`);
       return true;
     }
     else {
-      this.attacks.push(coordinates);
+      this.attacks.push(`${coordinates[0]}${coordinates[1]}`);
       return false;
     }
   }
@@ -59,8 +59,7 @@ class GameBoard {
   }
 
   outOfBounds(coordinates) {
-    // Since I'm using Math.random() it will never go below 0
-    return (coordinates[0] >= this.board.length) || (coordinates[1] >= this.board.length);
+    return (coordinates[0] >= this.board.length) || (coordinates[1] >= this.board.length) || (coordinates[0] < 0) || (coordinates[1] < 0);
   }
 }
 
