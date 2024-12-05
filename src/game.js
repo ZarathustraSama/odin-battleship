@@ -2,11 +2,12 @@ import "./style.css";
 
 import Player from "./player";
 import initializeBoard from "./initialize-board";
-import { drawBoard, drawAttackFail, drawAttackSuccess } from "./draw-board";
+import drawBoard from "./draw-board";
+
+const player = new Player("Real");
+const cpu = new Player("CPU");
 
 function game() {
-  const player = new Player("Real");
-  const cpu = new Player("CPU");
 
   initializeBoard(player);
   initializeBoard(cpu);
@@ -15,17 +16,25 @@ function game() {
   drawBoard(cpu);
 
   document.getElementById("randomizer").addEventListener("click", randomizePlayerBoard);
+}
 
-  const cpuCells = document.querySelectorAll("#player-2 div .cell");
-  for (const [_, cell] of Object.entries(cpuCells)) {
-    cell.addEventListener("click", () => { cpu.attack() }, { once: true });
-  }
+function cpuAttack() {
+  const attackCoordinates = cpu.attack();
+  const playerCell = document.getElementById(`${attackCoordinates[0]}${attackCoordinates[1]}`);
+  playerCell.click();
 }
 
 function randomizePlayerBoard() {
-  const player = new Player("Real");
+  player = new Player("Real");
+  cpu = new Player("CPU");
+
   initializeBoard(player);
+  initializeBoard(cpu);
+
   drawBoard(player);
+  drawBoard(cpu);
 }
 
 game();
+
+export { cpu, cpuAttack };
