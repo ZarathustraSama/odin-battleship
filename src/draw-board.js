@@ -1,4 +1,5 @@
 import Ship from "./ship";
+import { cpu, cpuAttack } from "./game";
 
 function drawBoard(player) {
   const board = player.board.board;
@@ -7,13 +8,27 @@ function drawBoard(player) {
   for (let iR = 0; iR < 10; iR++) {
     for (let iC = 0; iC < 10; iC++) {
       const cell = document.createElement("div");
+      cell.id = `${iR}${iC}`;
       if (board[iR][iC] instanceof Ship) {
         cell.classList = player.type == "Real" ? `cell ship-${board[iR][iC].length}` : "cell";
-        cell.addEventListener("click", () => { drawAttackSuccess(player, cell, [iR, iC]); }, { once: true });
+        cell.addEventListener("click", () => { 
+          drawAttackSuccess(player, cell, [iR, iC]);
+          if (player.type == "CPU") {
+            cpuAttack();
+          }
+          else {
+            cpu.addPlausibleAttacks([iR, iC]);
+          }
+         }, { once: true });
       }
       else {
         cell.classList = "cell";
-        cell.addEventListener("click", () => { drawAttackFail(player, cell, [iR, iC]); }, { once: true } );
+        cell.addEventListener("click", () => { 
+          drawAttackFail(player, cell, [iR, iC]);
+          if (player.type == "CPU") {
+            cpuAttack();
+          }
+         }, { once: true } );
       }
       grid.appendChild(cell);
     }
@@ -40,4 +55,4 @@ function drawAttackSuccess(player, cell, coordinates) {
   }
 }
 
-export { drawBoard, drawAttackFail, drawAttackSuccess };
+export default drawBoard;
