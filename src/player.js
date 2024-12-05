@@ -10,7 +10,6 @@ class Player {
 
   // CPU attack logic
   attack() {
-    console.log(this.plausibleAttacks)
     if (this.plausibleAttacks.length > 0) {
       return this.smartAttack();
     }
